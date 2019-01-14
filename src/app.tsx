@@ -1,20 +1,7 @@
 import React, { Component } from 'react'
-import { UnControlled } from 'react-codemirror2'
 import styled, { createGlobalStyle } from 'styled-components'
 
-import 'codemirror/addon/dialog/dialog'
-import 'codemirror/addon/edit/matchbrackets'
-import 'codemirror/addon/lint/json-lint'
-import 'codemirror/addon/lint/lint'
-import 'codemirror/addon/search/jump-to-line'
-import 'codemirror/addon/search/search'
-import 'codemirror/addon/search/searchcursor'
-import 'codemirror/addon/selection/active-line'
-import 'codemirror/mode/javascript/javascript'
-
-import 'codemirror/addon/dialog/dialog.css'
-import 'codemirror/addon/lint/lint.css'
-import 'codemirror/lib/codemirror.css'
+import MonacoEditor from './editor'
 
 import 'modern-normalize/modern-normalize.css'
 
@@ -41,21 +28,12 @@ const Wrapper = styled.div`
   height: 100%;
 `
 
-const CodeMirror = styled(UnControlled)`
-  border: 1px solid #777;
+const CodeMirror = styled(MonacoEditor)`
+  border: 1px solid #aaa;
+  margin: 1em;
   overflow: hidden;
   flex: 1;
-  height: 100%;
   position: relative;
-
-  .CodeMirror {
-    height: auto;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
 `
 
 class App extends Component {
@@ -65,24 +43,8 @@ class App extends Component {
         <GlobalStyle />
         <div>Hello World</div>
         <Wrapper>
-          <CodeMirror
-            options={{
-              gutters: ['CodeMirror-lint-markers'],
-              lineNumbers: true,
-              matchBrackets: true,
-              mode: 'application/typescript',
-              styleActiveLine: true,
-            }}
-          />
-          <CodeMirror
-            options={{
-              gutters: ['CodeMirror-lint-markers'],
-              lineNumbers: true,
-              matchBrackets: true,
-              mode: 'application/typescript',
-              styleActiveLine: true,
-            }}
-          />
+          <CodeMirror language="typescript" />
+          <CodeMirror language="typescript" />
         </Wrapper>
       </>
     )
