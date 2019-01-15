@@ -1,3 +1,4 @@
 module.exports = [
-  './rescripts/monaco-webpack'
+  './rescripts/monaco-webpack',
+  './rescripts/disable-opt',
 ]

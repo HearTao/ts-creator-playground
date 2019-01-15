@@ -16,7 +16,7 @@
   },
   "scripts": {
     "start": "rescripts start",
-    "build": "rescripts build",
+    "build": "GENERATE_SOURCEMAP=false rescripts build",
     "test": "rescripts test",
     "eject": "rescripts eject"
   },
