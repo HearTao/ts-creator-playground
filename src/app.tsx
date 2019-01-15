@@ -4,6 +4,7 @@ import styled, { createGlobalStyle } from 'styled-components'
 import tsCreator from './ts-creator/src'
 
 import MonacoEditor from './editor'
+import Header from './header'
 
 import 'modern-normalize/modern-normalize.css'
 
@@ -58,7 +59,7 @@ class App extends Component<{}, IState> {
     return (
       <>
         <GlobalStyle />
-        <div>Hello World</div>
+        <Header />
         <Wrapper>
           <Editor language="typescript" onChange={this.handleChange} />
           <Editor value={transformed} language="typescript" options={{ readOnly: true }} />
