@@ -1,7 +1,7 @@
 import debounce from 'lodash/debounce'
 import React, { Component } from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
-import tsCreator from './ts-creator/src'
+import tsCreator from 'ts-creator'
 
 import MonacoEditor from './editor'
 import Header from './header'

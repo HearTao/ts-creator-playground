@@ -1,3 +1,0 @@
-[submodule "src/ts-creator"]
-	path = src/ts-creator
-	url = git@github.com:HearTao/ts-creator.git
