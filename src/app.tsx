@@ -1,5 +1,7 @@
+import debounce from 'lodash/debounce'
 import React, { Component } from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
+import tsCreator from './ts-creator/src'
 
 import MonacoEditor from './editor'
 
@@ -28,7 +30,7 @@ const Wrapper = styled.div`
   height: 100%;
 `
 
-const CodeMirror = styled(MonacoEditor)`
+const Editor = styled(MonacoEditor)`
   border: 1px solid #aaa;
   margin: 1em;
   overflow: hidden;
@@ -36,15 +38,30 @@ const CodeMirror = styled(MonacoEditor)`
   position: relative;
 `
 
-class App extends Component {
+interface IState {
+  transformed: string
+}
+
+class App extends Component<{}, IState> {
+  public state = {
+    transformed: '',
+  }
+
+  public handleChange = debounce((value: string) => {
+    this.setState({
+      transformed: tsCreator(value),
+    })
+  }, 200)
+
   public render() {
+    const { transformed } = this.state
     return (
       <>
         <GlobalStyle />
         <div>Hello World</div>
         <Wrapper>
-          <CodeMirror language="typescript" />
-          <CodeMirror language="typescript" />
+          <Editor language="typescript" onChange={this.handleChange} />
+          <Editor value={transformed} language="typescript" options={{ readOnly: true }} />
         </Wrapper>
       </>
     )
