@@ -8998,9 +8998,9 @@ tryer@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/tryer/-/tryer-1.0.1.tgz#f2c85406800b9b0f74c9f7465b81eaad241252f8"
 
-ts-creator@1.1.5:
-  version "1.1.5"
-  resolved "https://registry.npmjs.org/ts-creator/-/ts-creator-1.1.5.tgz#e839fcb2e421d6107c403cec880f5f19ade09f0f"
+ts-creator@1.1.6:
+  version "1.1.6"
+  resolved "https://registry.npmjs.org/ts-creator/-/ts-creator-1.1.6.tgz#57826adc44a5ca6b65a4bb12f7da3fbc8953f387"
   dependencies:
     "@types/node" "^10.12.18"
     "@types/prettier" "^1.15.2"
