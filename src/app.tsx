@@ -1,7 +1,7 @@
 import debounce from 'lodash/debounce'
 import React, { Component } from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
-import tsCreator from 'ts-creator'
+import { Options } from 'ts-creator'
 
 import MonacoEditor from './editor'
 import Header from './header'
@@ -52,6 +52,8 @@ interface IState {
   loading: boolean
 }
 
+type TsCreator = (code: string, options?: Options) => string
+
 class App extends Component<{}, IState> {
   public state = {
     loading: true,
@@ -60,11 +62,15 @@ class App extends Component<{}, IState> {
 
   public handleChange = debounce((value: string) => {
     this.setState({
-      transformed: tsCreator(value),
+      transformed: this.tsCreator(value),
     })
   }, 200)
 
+  public tsCreator: TsCreator = () => ''
+
   public async componentDidMount() {
+    const tsCreator = await import(/* webpackChunkName: "ts-creator" */ 'ts-creator')
+    this.tsCreator = tsCreator.default
     this.setState({
       loading: false,
     })
