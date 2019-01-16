@@ -1,7 +1,7 @@
 import debounce from 'lodash/debounce'
 import React, { Component } from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
-import tsCreator from 'ts-creator'
+import { Options } from 'ts-creator'
 
 import MonacoEditor from './editor'
 import Header from './header'
@@ -22,8 +22,6 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-const AppWrapper = styled.div``
-
 const Wrapper = styled.div`
   display: flex;
   align-items: stretch;
@@ -39,27 +37,52 @@ const Editor = styled(MonacoEditor)`
   position: relative;
 `
 
+const LoadingIndicator = styled.div`
+  margin: 0 auto;
+  margin-top: 1em;
+  padding: 8px;
+  background-color: rgba(19, 124, 189, 0.1);
+  border: 1px solid #137cbd;
+  border-radius: 4px;
+  color: #137cbd;
+`
+
 interface IState {
   transformed: string
+  loading: boolean
 }
+
+type TsCreator = (code: string, options?: Options) => string
 
 class App extends Component<{}, IState> {
   public state = {
+    loading: true,
     transformed: '',
   }
 
   public handleChange = debounce((value: string) => {
     this.setState({
-      transformed: tsCreator(value),
+      transformed: this.tsCreator(value),
     })
   }, 200)
 
+  public tsCreator: TsCreator = () => ''
+
+  public async componentDidMount() {
+    const tsCreator = await import(/* webpackChunkName: "ts-creator" */ 'ts-creator')
+    this.tsCreator = tsCreator.default
+    this.setState({
+      loading: false,
+    })
+  }
+
   public render() {
-    const { transformed } = this.state
+    const { transformed, loading } = this.state
     return (
       <>
         <GlobalStyle />
         <Header />
+        {loading && <LoadingIndicator>Equipping ts-creator, don't panic</LoadingIndicator>}
         <Wrapper>
           <Editor language="typescript" onChange={this.handleChange} />
           <Editor value={transformed} language="typescript" options={{ readOnly: true }} />
