@@ -37,6 +37,7 @@ const Link = styled.a`
 const Header = () => (
   <Wrapper>
     <H1>TS Creator</H1>
+    <sup>{process.env.VERSION}</sup>
     <Spacer />
     <span>TypeScript code factory made easy</span>
     <Placeholder />
