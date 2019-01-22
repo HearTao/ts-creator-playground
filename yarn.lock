@@ -7387,6 +7387,10 @@ prettier@^1.14.2, prettier@^1.15.3:
   version "1.15.3"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.15.3.tgz#1feaac5bdd181237b54dbe65d874e02a1472786a"
 
+prettier@^1.16.0:
+  version "1.16.0"
+  resolved "https://registry.npmjs.org/prettier/-/prettier-1.16.0.tgz#104dd25f5ee3d0c9d0a6ce4bb40ced8481d51219"
+
 pretty-bytes@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/pretty-bytes/-/pretty-bytes-4.0.2.tgz#b2bf82e7350d65c6c33aa95aaa5a4f6327f61cd9"
@@ -8966,11 +8970,11 @@ tryer@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/tryer/-/tryer-1.0.1.tgz#f2c85406800b9b0f74c9f7465b81eaad241252f8"
 
-ts-creator@^1.1.10-874750a7:
-  version "1.1.10-874750a7"
-  resolved "https://registry.npmjs.org/ts-creator/-/ts-creator-1.1.10-874750a7.tgz#8d03253736e0723dab79db33171f4ddbaa30fbf3"
+ts-creator@^1.1.10-c41a68d5:
+  version "1.1.10-c41a68d5"
+  resolved "https://registry.npmjs.org/ts-creator/-/ts-creator-1.1.10-c41a68d5.tgz#0aaba49a7279dbded0466da553bb05a00d508e48"
   dependencies:
-    prettier "^1.15.3"
+    prettier "^1.16.0"
     typescript "^3.2.2"
 
 tslib@^1.7.1, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0:

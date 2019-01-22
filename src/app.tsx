@@ -69,7 +69,7 @@ class App extends Component<{}, IState> {
   public tsCreator: TsCreator = () => ''
 
   public async componentDidMount() {
-    const tsCreator = await import(/* webpackChunkName: "ts-creator" */ 'ts-creator')
+    const tsCreator = await import(/* webpackChunkName: "ts-creator" */ 'ts-creator/dist/index.web')
     this.tsCreator = tsCreator.default
     this.setState({
       loading: false,
