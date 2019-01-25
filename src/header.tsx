@@ -4,8 +4,7 @@ import styled from 'styled-components'
 import logo from './assets/logo.svg'
 
 const Wrapper = styled.header`
-  padding: 1em 2em;
-  border-bottom: 2px solid #137cbd;
+  background-color: rgba(19, 124, 189, 0.1);
   color: #137cbd;
   display: flex;
   align-items: center;
@@ -17,6 +16,7 @@ const H1 = styled.h1`
   display: flex;
   white-space: nowrap;
   align-items: center;
+  margin: 1ex 1em;
 `
 
 const Title = styled.div`
@@ -51,12 +51,27 @@ const Placeholder = styled.span`
 const Link = styled.a`
   color: inherit;
   text-decoration: none;
+  display: flex;
+  align-items: center;
   padding: 8px;
-  border-radius: 4px;
   transition: 0.3s;
+  height: 100%;
+  position: relative;
+  margin-right: 1em;
 
   :hover {
     background-color: rgba(19, 124, 189, 0.2);
+    ::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: #137cbd;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      transition: 0.3s;
+    }
   }
 `
 
