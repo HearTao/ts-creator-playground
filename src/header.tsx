@@ -1,10 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import logo from './assets/logo.svg'
+
 const Wrapper = styled.header`
   padding: 1em 2em;
-  background-color: #137cbd;
-  color: #fff;
+  border-bottom: 2px solid #137cbd;
+  color: #137cbd;
   display: flex;
   align-items: center;
 `
@@ -12,6 +14,30 @@ const Wrapper = styled.header`
 const H1 = styled.h1`
   margin: 0;
   font-size: 1.5rem;
+  display: flex;
+  white-space: nowrap;
+  align-items: center;
+`
+
+const Title = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+const Logo = styled.img`
+  height: 3rem;
+  margin-right: 1ex;
+`
+
+const Version = styled.sup`
+  font-weight: 400;
+  font-size: 1rem;
+`
+
+const Slogan = styled.span`
+  margin-top: 1ex;
+  font-weight: 200;
+  font-size: 1rem;
 `
 
 const Spacer = styled.span`
@@ -30,16 +56,23 @@ const Link = styled.a`
   transition: 0.3s;
 
   :hover {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(19, 124, 189, 0.2);
   }
 `
 
 const Header = () => (
   <Wrapper>
-    <H1>TS Creator</H1>
-    <sup>{process.env.VERSION}</sup>
+    <H1>
+      <Logo src={logo} />
+      <Title>
+        <span>
+          TS Creator<Version>{process.env.VERSION}</Version>
+        </span>
+        <Slogan>TypeScript code factory made easy</Slogan>
+      </Title>
+    </H1>
+
     <Spacer />
-    <span>TypeScript code factory made easy</span>
     <Placeholder />
     <Link href="https://github.com/HearTao/ts-creator">Fork me on GitHub</Link>
   </Wrapper>
