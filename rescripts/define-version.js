@@ -2,7 +2,9 @@ const { editWebpackPlugin } = require('@rescripts/utilities')
 const fs = require('fs')
 
 module.exports = config => {
-  const packageJson = JSON.parse(fs.readFileSync('./node_modules/ts-creator/package.json').toString())
+  const packageJson = JSON.parse(
+    fs.readFileSync('./node_modules/ts-creator/package.json').toString(),
+  )
 
   return editWebpackPlugin(
     p => {

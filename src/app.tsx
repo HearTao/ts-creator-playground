@@ -1,12 +1,11 @@
-import debounce from 'lodash/debounce'
-import React, { Component } from 'react'
+import React, { ComponentType, lazy, Suspense } from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
-import { Options } from 'ts-creator'
 
-import MonacoEditor from './editor'
 import Header from './header'
 
 import 'modern-normalize/modern-normalize.css'
+
+const Playground = lazy(() => import('./playground'))
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -22,21 +21,6 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
-const Wrapper = styled.div`
-  display: flex;
-  align-items: stretch;
-  flex: 1;
-  height: 100%;
-`
-
-const Editor = styled(MonacoEditor)`
-  border: 1px solid #aaa;
-  margin: 1em;
-  overflow: hidden;
-  flex: 1;
-  position: relative;
-`
-
 const LoadingIndicator = styled.div`
   margin: 0 auto;
   margin-top: 1em;
@@ -46,50 +30,14 @@ const LoadingIndicator = styled.div`
   border-radius: 4px;
   color: #137cbd;
 `
-
-interface IState {
-  transformed: string
-  loading: boolean
-}
-
-type TsCreator = (code: string, options?: Options) => string
-
-class App extends Component<{}, IState> {
-  public state = {
-    loading: true,
-    transformed: '',
-  }
-
-  public handleChange = debounce((value: string) => {
-    this.setState({
-      transformed: this.tsCreator(value),
-    })
-  }, 200)
-
-  public tsCreator: TsCreator = () => ''
-
-  public async componentDidMount() {
-    const tsCreator = await import(/* webpackChunkName: "ts-creator" */ 'ts-creator/dist/index.web')
-    this.tsCreator = tsCreator.default
-    this.setState({
-      loading: false,
-    })
-  }
-
-  public render() {
-    const { transformed, loading } = this.state
-    return (
-      <>
-        <GlobalStyle />
-        <Header />
-        {loading && <LoadingIndicator>Equipping ts-creator, don't panic</LoadingIndicator>}
-        <Wrapper>
-          <Editor language="typescript" onChange={this.handleChange} />
-          <Editor value={transformed} language="typescript" options={{ readOnly: true }} />
-        </Wrapper>
-      </>
-    )
-  }
-}
+const App = () => (
+  <>
+    <GlobalStyle />
+    <Header />
+    <Suspense fallback={<LoadingIndicator>Equipping ts-creator, don't panic</LoadingIndicator>}>
+      <Playground />
+    </Suspense>
+  </>
+)
 
 export default App
