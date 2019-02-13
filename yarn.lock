@@ -8990,10 +8990,10 @@ tryer@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/tryer/-/tryer-1.0.1.tgz#f2c85406800b9b0f74c9f7465b81eaad241252f8"
 
-ts-creator@^1.1.10-55a4fbb5:
-  version "1.1.10-55a4fbb5"
-  resolved "https://registry.yarnpkg.com/ts-creator/-/ts-creator-1.1.10-55a4fbb5.tgz#00b41f4be9642436aa9c925842d49fcfbeb22dd3"
-  integrity sha512-DmHPKqGdOObVR1bK14Lo4v1vYKMs4a2vMPGft2VeTBlm54quJr99boLwbxWhywOD6jul0u+ROsOpZKg8XwpaKA==
+ts-creator@^1.2.0-cd075c66:
+  version "1.2.0-cd075c66"
+  resolved "https://registry.yarnpkg.com/ts-creator/-/ts-creator-1.2.0-cd075c66.tgz#fd9825136a283c72e35b8a68a3f298e086fee978"
+  integrity sha512-18bU8lQs/8Mz6Fk22H0cCkaWMThSxTU8h+Akgp8LV8nCIx0KZo8VUtdOLPEmWV1tiQ65BFKbEVSvBvT070drLQ==
   dependencies:
     cardinal "^2.1.1"
     get-stdin "^6.0.0"
