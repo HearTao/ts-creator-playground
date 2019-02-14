@@ -1,5 +1,5 @@
-module 'ts-creator/dist/index.web' {
-  import { Options } from 'ts-creator'
+import tsCreator from 'ts-creator'
 
-  export default function create(code: string, options?: Options): string
+declare module 'ts-creator/dist/index.web' {
+  export default tsCreator
 }
