@@ -6,8 +6,8 @@ import tsCreator from 'ts-creator/dist/index.web'
 import * as MonacoApi from 'monaco-editor/esm/vs/editor/editor.api'
 import MonacoEditor from './editor'
 import { PlaygroundOptions } from './options'
-import { CreatorTarget } from 'ts-creator'
 import Snackbar from '@material-ui/core/Snackbar'
+import { CreatorTarget } from './helper'
 
 const Wrapper = styled.div`
   display: flex;

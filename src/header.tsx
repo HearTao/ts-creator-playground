@@ -9,8 +9,7 @@ import Switch from '@material-ui/core/Switch'
 import Checkbox from '@material-ui/core/Checkbox'
 import Divider from '@material-ui/core/Divider'
 import { PlaygroundOptions, UpdateOptionsCallback } from './options'
-
-import { CreatorTarget } from 'ts-creator'
+import { CreatorTarget } from './helper'
 
 const Wrapper = styled.header`
   background-color: rgba(19, 124, 189, 0.1);

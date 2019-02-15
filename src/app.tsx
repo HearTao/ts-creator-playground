@@ -2,10 +2,10 @@ import React, { Component, lazy, Suspense } from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
 
 import Header from './header'
-import { CreatorTarget } from 'ts-creator'
 
 import 'modern-normalize/modern-normalize.css'
 import { PlaygroundOptions, UpdateOptionsCallback } from './options'
+import { CreatorTarget } from './helper'
 
 const Playground = lazy(() => import('./playground'))
 
