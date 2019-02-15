@@ -7,6 +7,7 @@ import * as MonacoApi from 'monaco-editor/esm/vs/editor/editor.api'
 import MonacoEditor from './editor'
 import { PlaygroundOptions } from './options'
 import { CreatorTarget } from 'ts-creator'
+import Snackbar from '@material-ui/core/Snackbar'
 
 const Wrapper = styled.div`
   display: flex;
@@ -25,8 +26,9 @@ const Editor = styled(MonacoEditor)`
 
 interface IState {
   code: string
-  transformed: string
   disposable: MonacoApi.IDisposable | null
+  errors: string | null
+  transformed: string
 }
 
 interface Props {
@@ -37,14 +39,26 @@ export default class Playground extends Component<Props, IState> {
   public state: IState = {
     code: '',
     disposable: null,
+    errors: null,
     transformed: '',
   }
 
   public handleChange = debounce((value: string, options: PlaygroundOptions) => {
-    this.setState({
-      code: value,
-      transformed: value ? tsCreator(value, options) : '',
-    })
+    let transformed: string = ''
+    try {
+      transformed = value ? tsCreator(value, options) : ''
+    } catch (e) {
+      this.setState({
+        errors: `[internal error]: ${e.message}`,
+      })
+    }
+
+    if (transformed) {
+      this.setState({
+        code: value,
+        transformed,
+      })
+    }
   }, 200)
 
   public setupTsLib = debounce((options: PlaygroundOptions) => {
@@ -90,8 +104,16 @@ export default class Playground extends Component<Props, IState> {
     this.setupTsLib(this.props.options)
   }
 
+  public handleClose = (_, reason: string) => {
+    if (reason === 'clickaway') {
+      return
+    }
+
+    this.setState({ errors: null })
+  }
+
   public render() {
-    const { transformed } = this.state
+    const { errors, transformed } = this.state
     return (
       <Wrapper>
         <Editor language="typescript" onChange={this.handleCodeChange} />
@@ -99,6 +121,16 @@ export default class Playground extends Component<Props, IState> {
           value={transformed}
           language="typescript"
           options={{ readOnly: this.props.options.readonly }}
+        />
+        <Snackbar
+          anchorOrigin={{
+            horizontal: 'left',
+            vertical: 'bottom',
+          }}
+          open={errors !== null}
+          autoHideDuration={6000}
+          onClose={this.handleClose}
+          message={<span>{errors}</span>}
         />
       </Wrapper>
     )
