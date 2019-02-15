@@ -53,12 +53,10 @@ export default class Playground extends Component<Props, IState> {
       })
     }
 
-    if (transformed) {
-      this.setState({
-        code: value,
-        transformed,
-      })
-    }
+    this.setState({
+      code: value,
+      transformed,
+    })
   }, 200)
 
   public setupTsLib = debounce((options: PlaygroundOptions) => {
