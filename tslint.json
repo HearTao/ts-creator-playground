@@ -10,6 +10,7 @@
     "no-console": [true, "log"],
     "jsx-no-lambda": false,
     "only-arrow-functions": false,
-    "ordered-imports": false
+    "ordered-imports": false,
+    "interface-name": false
   }
 }

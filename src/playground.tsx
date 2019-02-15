@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import tsCreator from 'ts-creator/dist/index.web'
 import * as MonacoApi from 'monaco-editor/esm/vs/editor/editor.api'
 import MonacoEditor from './editor'
+import { PlaygroundOptions } from './options'
 
 const Wrapper = styled.div`
   display: flex;
@@ -22,41 +23,49 @@ const Editor = styled(MonacoEditor)`
 `
 
 interface IState {
+  code: string
   transformed: string
-  loading: boolean
 }
 
-class Playground extends Component<{}, IState> {
+interface Props {
+  options: PlaygroundOptions
+}
+
+export default class Playground extends Component<Props, IState> {
   public state = {
-    loading: true,
+    code: '',
     transformed: '',
   }
 
   public handleChange = debounce((value: string) => {
     this.setState({
-      transformed: tsCreator(value),
+      code: value,
+      transformed: value ? tsCreator(value, this.props.options) : '',
     })
   }, 200)
+
+  public UNSAFE_componentWillReceiveProps(props: Props) {
+    this.handleChange(this.state.code)
+  }
 
   public async componentDidMount() {
     MonacoApi.languages.typescript.typescriptDefaults.addExtraLib(
       process.env.tsLib,
       'typescript.d.ts',
     )
-    this.setState({
-      loading: false,
-    })
   }
 
   public render() {
-    const { transformed, loading } = this.state
+    const { transformed } = this.state
     return (
       <Wrapper>
         <Editor language="typescript" onChange={this.handleChange} />
-        <Editor value={transformed} language="typescript" options={{ readOnly: true }} />
+        <Editor
+          value={transformed}
+          language="typescript"
+          options={{ readOnly: this.props.options.readonly }}
+        />
       </Wrapper>
     )
   }
 }
-
-export default Playground

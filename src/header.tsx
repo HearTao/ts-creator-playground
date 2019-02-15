@@ -2,6 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 
 import logo from './assets/logo.svg'
+import Menu from './menu'
+import FormGroup from '@material-ui/core/FormGroup'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import Switch from '@material-ui/core/Switch'
+import Checkbox from '@material-ui/core/Checkbox'
+import Divider from '@material-ui/core/Divider'
+import { PlaygroundOptions, UpdateOptionsCallback } from './options'
+
+import { CreatorTarget } from 'ts-creator'
 
 const Wrapper = styled.header`
   background-color: rgba(19, 124, 189, 0.1);
@@ -75,7 +84,12 @@ const Link = styled.a`
   }
 `
 
-const Header = () => (
+interface Props {
+  options: PlaygroundOptions
+  onChange: UpdateOptionsCallback
+}
+
+const Header = (props: Props) => (
   <Wrapper>
     <H1>
       <Logo src={logo} />
@@ -89,6 +103,59 @@ const Header = () => (
 
     <Spacer />
     <Placeholder />
+    <Menu placeholder={<Link>Options</Link>}>
+      <FormGroup>
+        <FormControlLabel
+          control={
+            <Switch
+              checked={props.options.readonly || false}
+              onChange={(_, v) => props.onChange('readonly', v)}
+            />
+          }
+          label="Readonly"
+        />
+        <Divider />
+        <FormControlLabel
+          control={
+            <Switch
+              checked={props.options.tsx || false}
+              onChange={(_, v) => props.onChange('tsx', v)}
+            />
+          }
+          label="Tsx"
+        />
+      </FormGroup>
+      <Divider />
+      <FormGroup row={true}>
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={props.options.target === CreatorTarget.expression}
+              onChange={() => props.onChange('target', CreatorTarget.expression)}
+            />
+          }
+          label="Expression"
+        />
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={props.options.target === CreatorTarget.runnable}
+              onChange={() => props.onChange('target', CreatorTarget.runnable)}
+            />
+          }
+          label="Runnable"
+        />
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={props.options.target === CreatorTarget.esmodule}
+              onChange={() => props.onChange('target', CreatorTarget.esmodule)}
+            />
+          }
+          label="ESmodule"
+        />
+      </FormGroup>
+    </Menu>
     <Link href="https://github.com/HearTao/ts-creator">Fork me on GitHub</Link>
   </Wrapper>
 )

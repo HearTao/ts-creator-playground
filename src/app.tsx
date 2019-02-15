@@ -1,9 +1,11 @@
-import React, { ComponentType, lazy, Suspense } from 'react'
+import React, { Component, lazy, Suspense } from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
 
 import Header from './header'
+import { CreatorTarget } from 'ts-creator'
 
 import 'modern-normalize/modern-normalize.css'
+import { PlaygroundOptions, UpdateOptionsCallback } from './options'
 
 const Playground = lazy(() => import('./playground'))
 
@@ -30,14 +32,40 @@ const LoadingIndicator = styled.div`
   border-radius: 4px;
   color: #137cbd;
 `
-const App = () => (
-  <>
-    <GlobalStyle />
-    <Header />
-    <Suspense fallback={<LoadingIndicator>Equipping ts-creator, don't panic</LoadingIndicator>}>
-      <Playground />
-    </Suspense>
-  </>
-)
+
+interface State {
+  options: PlaygroundOptions
+}
+
+class App extends Component<{}, State> {
+  public state = {
+    options: {
+      readonly: true,
+      target: CreatorTarget.expression,
+      tsx: false,
+    },
+  }
+
+  public handleOptionsChanged: UpdateOptionsCallback = (key, value) => {
+    this.setState({
+      options: {
+        ...this.state.options,
+        [key]: value,
+      },
+    })
+  }
+
+  public render() {
+    return (
+      <>
+        <GlobalStyle />
+        <Header options={this.state.options} onChange={this.handleOptionsChanged} />
+        <Suspense fallback={<LoadingIndicator>Equipping ts-creator, don't panic</LoadingIndicator>}>
+          <Playground options={this.state.options} />
+        </Suspense>
+      </>
+    )
+  }
+}
 
 export default App
