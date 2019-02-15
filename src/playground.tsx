@@ -33,7 +33,7 @@ class Playground extends Component<{}, IState> {
 
   public handleChange = debounce((value: string) => {
     this.setState({
-      transformed: tsCreator.default(value),
+      transformed: tsCreator(value),
     })
   }, 200)
 
