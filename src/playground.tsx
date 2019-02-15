@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 import tsCreator from 'ts-creator/dist/index.web'
+import * as MonacoApi from 'monaco-editor/esm/vs/editor/editor.api'
 import MonacoEditor from './editor'
 
 const Wrapper = styled.div`
@@ -38,6 +39,10 @@ class Playground extends Component<{}, IState> {
   }, 200)
 
   public async componentDidMount() {
+    MonacoApi.languages.typescript.typescriptDefaults.addExtraLib(
+      process.env.tsLib,
+      'typescript.d.ts',
+    )
     this.setState({
       loading: false,
     })

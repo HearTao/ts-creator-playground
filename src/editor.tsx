@@ -1,6 +1,6 @@
 import debounce from 'lodash/debounce'
 import React, { Component, createRef } from 'react'
-import MonacoEditor, { EditorDidMount, MonacoEditorProps } from 'react-monaco-editor'
+import MonacoEditor, { MonacoEditorProps } from 'react-monaco-editor'
 import ResizeObserver from 'resize-observer-polyfill'
 
 interface IState {
@@ -44,22 +44,13 @@ class Editor extends Component<IProps, IState> {
     }
   }
 
-  public editorDidMount: EditorDidMount = function(editor, monaco) {
-    monaco.languages.typescript.typescriptDefaults.addExtraLib(process.env.tsLib, 'typescript.d.ts')
-  }
-
   public render() {
     const { width, height } = this.state
     const { width: w, height: h, className, ...restProps } = this.props
     return (
       <div className={className}>
         <div style={{ height: '100%', width: '100%' }} ref={this.container}>
-          <MonacoEditor
-            width={width}
-            height={height}
-            {...restProps}
-            editorDidMount={this.editorDidMount}
-          />
+          <MonacoEditor width={width} height={height} {...restProps} />
         </div>
       </div>
     )

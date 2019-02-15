@@ -9,6 +9,7 @@
     "prettier": true,
     "no-console": [true, "log"],
     "jsx-no-lambda": false,
-    "only-arrow-functions": false
+    "only-arrow-functions": false,
+    "ordered-imports": false
   }
 }
