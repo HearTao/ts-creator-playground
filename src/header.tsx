@@ -108,6 +108,7 @@ const Header = (props: Props) => (
         <FormControlLabel
           control={
             <Switch
+              color="primary"
               checked={props.options.readonly || false}
               onChange={(_, v) => props.onChange('readonly', v)}
             />
@@ -118,6 +119,7 @@ const Header = (props: Props) => (
         <FormControlLabel
           control={
             <Switch
+              color="primary"
               checked={props.options.tsx || false}
               onChange={(_, v) => props.onChange('tsx', v)}
             />
@@ -130,6 +132,7 @@ const Header = (props: Props) => (
         <FormControlLabel
           control={
             <Checkbox
+              color="primary"
               checked={props.options.target === CreatorTarget.expression}
               onChange={() => props.onChange('target', CreatorTarget.expression)}
             />
@@ -139,6 +142,7 @@ const Header = (props: Props) => (
         <FormControlLabel
           control={
             <Checkbox
+              color="primary"
               checked={props.options.target === CreatorTarget.runnable}
               onChange={() => props.onChange('target', CreatorTarget.runnable)}
             />
@@ -148,6 +152,7 @@ const Header = (props: Props) => (
         <FormControlLabel
           control={
             <Checkbox
+              color="primary"
               checked={props.options.target === CreatorTarget.esmodule}
               onChange={() => props.onChange('target', CreatorTarget.esmodule)}
             />
