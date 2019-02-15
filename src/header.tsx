@@ -66,7 +66,10 @@ const Link = styled.a`
   transition: 0.3s;
   height: 100%;
   position: relative;
-  margin-right: 1em;
+
+  &:last-child {
+    margin-right: 1em;
+  }
 
   :hover {
     background-color: rgba(19, 124, 189, 0.2);
