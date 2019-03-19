@@ -47,6 +47,9 @@ export default class Playground extends Component<Props, IState> {
     let transformed: string = ''
     try {
       transformed = value ? tsCreator(value, options) : ''
+      if (transformed.startsWith(';')) {
+        transformed = transformed.substring(1)
+      }
     } catch (e) {
       this.setState({
         errors: `[internal error]: ${e.message}`,
