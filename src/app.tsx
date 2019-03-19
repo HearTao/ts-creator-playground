@@ -41,7 +41,7 @@ class App extends Component<{}, State> {
   public state = {
     options: {
       readonly: true,
-      target: CreatorTarget.expression,
+      target: CreatorTarget.none,
       tsx: false,
     },
   }

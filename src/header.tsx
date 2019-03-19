@@ -135,6 +135,16 @@ const Header = (props: Props) => (
           control={
             <Checkbox
               color="primary"
+              checked={props.options.target === CreatorTarget.none}
+              onChange={() => props.onChange('target', CreatorTarget.none)}
+            />
+          }
+          label="None"
+        />
+        <FormControlLabel
+          control={
+            <Checkbox
+              color="primary"
               checked={props.options.target === CreatorTarget.expression}
               onChange={() => props.onChange('target', CreatorTarget.expression)}
             />

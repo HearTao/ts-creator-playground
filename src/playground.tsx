@@ -66,6 +66,7 @@ export default class Playground extends Component<Props, IState> {
     }
 
     switch (options.target) {
+      case CreatorTarget.none:
       case CreatorTarget.expression:
         this.setState({
           disposable: MonacoApi.languages.typescript.typescriptDefaults.addExtraLib(
