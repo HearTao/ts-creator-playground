@@ -9220,9 +9220,10 @@ tryer@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/tryer/-/tryer-1.0.1.tgz#f2c85406800b9b0f74c9f7465b81eaad241252f8"
 
-ts-creator@^1.2.5-add0acdf:
-  version "1.2.5-add0acdf"
-  resolved "https://registry.npmjs.org/ts-creator/-/ts-creator-1.2.5-add0acdf.tgz#8ab3b85f388090ccfd3949fdb6db619e90f7f355"
+ts-creator@^1.2.5-f4d886b1:
+  version "1.2.5-f4d886b1"
+  resolved "https://registry.npmjs.org/ts-creator/-/ts-creator-1.2.5-f4d886b1.tgz#389820a6c68d4d6f7c92ab90e39e59fb4548439b"
+  integrity sha512-CT1EmjmHv1n/u8uh6yToKa5iy26U2rSBFVYSHeRcGheKBiXtBJd7Xfvp7oCJVgAM7CwcncnL2Ot2LoK2t4hJqQ==
   dependencies:
     cardinal "^2.1.1"
     get-stdin "^6.0.0"
